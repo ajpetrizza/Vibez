@@ -12,7 +12,7 @@ function StageSphere(props) {
   const mesh = useRef();
 
   useFrame(() => {
-    mesh.current.rotation.y += 0.005;
+    mesh.current.rotation.y += 0.0025;
   });
 
   return (
@@ -29,8 +29,8 @@ function MainSphere(props) {
   const mesh = useRef();
 
   useFrame(() => {
-    mesh.current.rotation.y -= 0.01;
-    mesh.current.rotation.x += 0.005;
+    mesh.current.rotation.y -= 0.0065;
+    mesh.current.rotation.x += 0.003;
   });
 
   return (
@@ -192,7 +192,7 @@ function BassSquareOne(props) {
 function PlaneGround(props) {
   const mesh = useRef();
   useFrame(() => {
-    mesh.current.rotation.z += 0.005;
+    mesh.current.rotation.z += 0.0025;
   });
 
   return (
@@ -211,7 +211,7 @@ function PlaneGround(props) {
 function PlaneCeil(props) {
   const mesh = useRef();
   useFrame(() => {
-    mesh.current.rotation.z -= 0.005;
+    mesh.current.rotation.z -= 0.0025;
   });
 
   return (
