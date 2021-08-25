@@ -1,0 +1,72 @@
+#root {
+  height: 100%;
+}
+
+html, body {
+  margin: 0;
+  height: 100%;
+}
+
+.entire-scene {
+  height: 100%;
+}
+
+canvas {
+  background-color: black;
+  margin: 0;
+  height: 100%;
+}
+
+
+
+.audio-parent {
+  position: relative;
+  left: 0;
+  top: 0;
+}
+
+/* file and audio html */
+.audio-upload {
+  position: relative;
+  bottom: 0;
+}
+
+.header-flex {
+  display: flex;
+  flex-direction: row;
+  background-color: black;
+}
+
+#thefile{
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: 1;
+}
+
+label.file{
+  display: inline-block;
+  position: relative;
+  width: 160px;
+
+  padding: 0.5rem;
+  border-radius: 4px;
+
+  background: cornflowerblue;
+  color: white;
+  font-size: 1.00em;
+  font-weight: 600;
+  box-shadow: 0 20px 60px var(--shadowColorFaint);
+
+  cursor: pointer;
+}
+
+audio {
+  display: inline-block;
+
+  left: 10px;
+  bottom: -10px;
+  width: calc(100% - 20px);
+}
