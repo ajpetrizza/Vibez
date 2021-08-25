@@ -36,14 +36,72 @@ function MainSphere(props) {
   return (
     <mesh
       ref={mesh}>
-      <sphereGeometry args={[13, 32, 16]} />
+      <sphereGeometry args={[13, 48, 32]} />
       <meshLambertMaterial color='#c13abb' wireframe />
     </mesh>
   );
 }
+// SQUARESSSSSS
+var squareThreeGoingDown = true;
+var squareThreeGoingBack = true;
+var squareThreeGoingLeft = true;
+function BassSquareThree(props) {
+  const mesh = useRef();
 
-// Square bass hits
-var squareTwoGoingDown = false;
+  useFrame(() => {
+    mesh.current.rotation.y -= 0.01;
+    mesh.current.rotation.x += 0.03;
+    if (squareThreeGoingDown) {
+      mesh.current.position.y -= 0.1;
+      if (mesh.current.position.y <= -20) {
+        squareThreeGoingDown = false;
+      }
+    } else {
+      mesh.current.position.y += 0.1;
+      if (mesh.current.position.y >= 20) {
+        squareThreeGoingDown = true;
+      }
+    }
+    // LEFT RIGHT
+    if (squareThreeGoingLeft) {
+      mesh.current.position.x -= 0.0725;
+      if (mesh.current.position.x <= -45) {
+        squareThreeGoingLeft = false;
+      }
+    } else {
+      mesh.current.position.x += 0.0725;
+      if (mesh.current.position.x >= 45) {
+        squareThreeGoingLeft = true;
+      }
+    }
+    //BACK AND FORTH
+    if (squareThreeGoingBack) {
+      mesh.current.position.z -= 0.2;
+      if (mesh.current.position.z <= -35) {
+        squareThreeGoingBack = false;
+      }
+    } else {
+      mesh.current.position.z += 0.2;
+      if (mesh.current.position.z >= 20) {
+        squareThreeGoingBack = true;
+      }
+    }
+  });
+
+  return (
+    <mesh
+      ref={mesh}
+      position={[10, 20, 10]}>
+      <icosahedronGeometry args={[5.00]} />
+      <meshLambertMaterial color='#3abbc1' wireframe />
+
+    </mesh>
+  );
+}
+
+// Second square
+var squareTwoGoingDown = true;
+var squareTwoGoingLeft = false;
 function BassSquareTwo(props) {
   const mesh = useRef();
 
@@ -61,6 +119,18 @@ function BassSquareTwo(props) {
         squareTwoGoingDown = true;
       }
     }
+    // LEFT RIGHT
+    if (squareTwoGoingLeft) {
+      mesh.current.position.x -= 0.075;
+      if (mesh.current.position.x <= 10) {
+        squareTwoGoingLeft = false;
+      }
+    } else {
+      mesh.current.position.x += 0.075;
+      if (mesh.current.position.x >= 55) {
+        squareTwoGoingLeft = true;
+      }
+    }
   });
 
   return (
@@ -68,14 +138,15 @@ function BassSquareTwo(props) {
       ref={mesh}
       position={[30, 20, -3]}>
       <boxBufferGeometry args={[4, 4, 4]} radius={0.05} smoothness={4} />
-      <meshLambertMaterial color='#3ac184' wireframe />
+      <meshLambertMaterial color='#e9f23e' wireframe />
 
     </mesh>
   );
 }
 
-// Square bass hits
+// First square
 var squareOneGoingDown = true;
+var squareOneGoingLeft = true;
 function BassSquareOne(props) {
   const mesh = useRef();
 
@@ -83,14 +154,26 @@ function BassSquareOne(props) {
     mesh.current.rotation.y -= 0.01;
     mesh.current.rotation.x += 0.03;
     if (squareOneGoingDown) {
-      mesh.current.position.y -= 0.25;
+      mesh.current.position.y -= 0.175;
       if (mesh.current.position.y <= -25) {
         squareOneGoingDown = false;
       }
     } else {
-      mesh.current.position.y += 0.25;
+      mesh.current.position.y += 0.175;
       if (mesh.current.position.y >= 20) {
         squareOneGoingDown = true;
+      }
+    }
+    // LEFT RIGHT
+    if (squareOneGoingLeft) {
+      mesh.current.position.x -= 0.1;
+      if (mesh.current.position.x <= -55) {
+        squareOneGoingLeft = false;
+      }
+    } else {
+      mesh.current.position.x += 0.1;
+      if (mesh.current.position.x >= -10) {
+        squareOneGoingLeft = true;
       }
     }
   });
@@ -100,7 +183,7 @@ function BassSquareOne(props) {
       ref={mesh}
       position={[-30, 20, -3]}>
       <boxBufferGeometry args={[4, 4, 4]} radius={0.05} smoothness={4} />
-      <meshLambertMaterial color='#3ac184' wireframe />
+      <meshLambertMaterial color='#f25f3e' wireframe />
     </mesh>
   );
 }
@@ -109,7 +192,7 @@ function BassSquareOne(props) {
 function PlaneGround(props) {
   const mesh = useRef();
   useFrame(() => {
-
+    mesh.current.rotation.z += 0.005;
   });
 
   return (
@@ -117,7 +200,7 @@ function PlaneGround(props) {
       ref={mesh}
       position={[0, -20, 0]}
       rotation={[4.7, 0, 0]}>
-      <planeBufferGeometry args={[100, 50, 25, 25]} />
+      <planeBufferGeometry args={[100, 75, 12, 12]} />
       <meshLambertMaterial color='#403ac1' wireframe />
 
     </mesh>
@@ -128,7 +211,7 @@ function PlaneGround(props) {
 function PlaneCeil(props) {
   const mesh = useRef();
   useFrame(() => {
-
+    mesh.current.rotation.z -= 0.005;
   });
 
   return (
@@ -136,7 +219,7 @@ function PlaneCeil(props) {
       ref={mesh}
       position={[0, 20, 0]}
       rotation={[-4.7, 0, 0]}>
-      <planeBufferGeometry args={[100, 50, 25, 25]} />
+      <planeBufferGeometry args={[100, 75, 25, 25]} />
       <meshLambertMaterial color='#403ac1' wireframe />
 
     </mesh>
@@ -189,10 +272,11 @@ const App = () => {
         <MainSphere />
         <BassSquareOne />
         <BassSquareTwo />
+        <BassSquareThree />
         <PlaneGround />
         <PlaneCeil />
-        <FillLight />
-        <ambientLight intensity={0.5} color='#f3f3f3' />
+        {/* <FillLight /> */}
+        <ambientLight intensity={0.8} color='#f3f3f3' />
       </Canvas>
     </div>
   );
